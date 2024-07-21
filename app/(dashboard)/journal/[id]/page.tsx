@@ -18,9 +18,33 @@ const getEntry = async (id) => {
 
 const EntryPage = async ({ params }) => {
     const entry = await getEntry(params.id) 
+    const analysisData = [
+        { name: 'Summary', value: '' },
+        { name: 'Subject', value: '' },
+        { name: 'Mood', value: '' },
+        { name: 'Negative', value: 'False' },
+    ]
+
     return(
-        <div className="h-full w-full">
-            <Editor entry={entry} />
+        <div className="h-full w-full grid grid-cols-3">
+            <div className="col-span-2">
+                <Editor entry={entry} />
+            </div>
+            <div className="border-l border-black/10">
+                <div className="bg-blue-300 px-5 py-8 ">
+                    <h2 className="text-3xl">Analysis</h2>
+                </div>
+                <div>
+                    <ul>
+                        {analysisData.map(item => (
+                            <li key={item.name} className="flex items-center justify-between text-lg font-semibold px-2 py-4 border-b border-t border-black/10">
+                                <span>{item.name}</span>
+                                <span>{item.value}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }
