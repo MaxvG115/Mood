@@ -3,6 +3,7 @@ import { getUserByClerkId } from "@/utils/auth"
 import EntryCard from "@/components/EntryCard"
 import NewEntryCard from "@/components/NewEntryCard"
 import Link from "next/link"
+import { analyze } from "@/utils/ai"
 
 const getEntries = async () => {
     const user = await getUserByClerkId()
