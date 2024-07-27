@@ -4,7 +4,8 @@ import React from 'react';
 
 const links =[
     { href: '/', label: 'Home' },
-    { href: '/journal', label: 'Journal' }
+    { href: '/journal', label: 'Journal' },
+    { href: '/history', label: 'History' },
 ]
 
 const dashboardLayout = ({ children }) => {
