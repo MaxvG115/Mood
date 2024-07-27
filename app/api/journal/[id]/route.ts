@@ -1,11 +1,11 @@
 import { analyze } from "@/utils/ai"
 import { getUserByClerkId } from "@/utils/auth"
 import { prisma } from "@/utils/db"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
-export const PATCH = async (request: Request, {params}) => {
+export const PATCH = async (request: Request, { params }) => {
     const { content } = await request.json()
-
     const user = await getUserByClerkId()
     const updatedEntry = await prisma.journalEntry.update({
         where: {
@@ -15,23 +15,21 @@ export const PATCH = async (request: Request, {params}) => {
             },
         },
         data: {
-            content,
-        },
+            content,  // Make sure to pass the content correctly here
+          },
     })
 
-    const analysis = await await analyze(updatedEntry.content)
+    const analysis = await analyze(updatedEntry.content)
     const updated = await prisma.analysis.upsert({
         where: {
-            entryID: updatedEntry.id,
+            entryId: updatedEntry.id,
         },
         create: {
-            entryID: updatedEntry.id,
+            entryId: updatedEntry.id,
             ...analysis
         },
         update: analysis,
     })
-
-    console.log(updated)
 
     return NextResponse.json({ data:{ ...updatedEntry , analysis: updated }})
 }

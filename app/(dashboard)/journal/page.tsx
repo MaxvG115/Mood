@@ -16,7 +16,6 @@ const getEntries = async () => {
             createdAt: 'desc',
         },
     })
-
     return entries
 }
 

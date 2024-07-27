@@ -15,14 +15,14 @@ const Editor = ({ entry }) => {
         { name: 'Summary', value: summary },
         { name: 'Subject', value: subject },
         { name: 'Mood', value: mood },
-        { name: 'Negative', value: negative ? 'True' : 'False'},
+        { name: 'Negative', value: negative ? 'True' : 'False' },
     ]
 
     useAutosave({
         data: value,
         onSave: async (_value) => {
             setIsLoading(true)
-            const data = await updateEntry(entry.id, _value)
+            const data = await updateEntry(entry.id, _value);
             setAnalysis(data.analysis)
             setIsLoading(false)
         },
