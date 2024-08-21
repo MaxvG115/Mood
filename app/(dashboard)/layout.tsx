@@ -10,14 +10,14 @@ const links =[
 
 const dashboardLayout = ({ children }) => {
     return(
-        <div className="h-screen w-screen relative">
-            <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-black/20 py-6 pl-4">
-                <div className="pb-6">
+        <div className="h-screen w-screen bg-slate-900 text-white">
+            <aside className="absolute w-[200px] top-0 left-0 h-screen border-r border-black/20 py-6 pl-12 overflow-y-auto">
+                <div className="pb-6 text-3xl">
                     Mood
                 </div>
                 <ul>
                     {links.map(link => (
-                        <li key={link.href} className="py-2">
+                        <li key={link.href} className="py-2 hover:scale-105 transition duration-300 ease-in-out">
                             <Link href={link.href}>
                                 {link.label}
                             </Link>
@@ -31,7 +31,7 @@ const dashboardLayout = ({ children }) => {
                         <UserButton />
                     </div>
                 </header>
-                <div className="h-[calc(100vh-60px)]">{children}</div>
+                <div className="h-[calc(100vh-60px)] overflow-auto">{children}</div>
             </div>
         </div>
     )

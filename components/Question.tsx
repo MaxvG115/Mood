@@ -24,19 +24,20 @@ const Question = () => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
           value={value}
           onChange={onChange}
-          className="border border-gray-300 rounded-md p-2 text-lg"
+          className="border border-gray-300 rounded-md p-2 text-lg bg-slate-200 text-black w-full"
           disabled={loading}
           placeholder="Ask a question..."
+          style={{ minWidth: '300px' }}  // Adjust the minimum width as needed
         />
         <button
           disabled={loading}
           type="submit"
-          className="bg-blue-400 px-4 py-2 rounded-md"
+          className="bg-cyan-600 mt-2 px-4 py-2 rounded-md"
         >
           Ask
         </button>

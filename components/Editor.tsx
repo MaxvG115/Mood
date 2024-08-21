@@ -27,9 +27,12 @@ const Editor = ({ entry }) => {
             setIsLoading(false)
         },
     })
+    const defaultColor = "#FFFFFF"; // Set your default color here
+    const backgroundColor = color || defaultColor; // Use the provided color or fallback to default
+
 
     return(
-        <div className="w-full h-full grid grid-cols-3 gap-0 relative">
+        <div className="w-full h-full grid grid-cols-3 gap-0 relative text-black bg-slate-300">
             <div className="absolute left-0 top-0 p-2">
                 {isLoading ? (
                 <Spinner />
@@ -38,12 +41,18 @@ const Editor = ({ entry }) => {
                 )}
             </div>
             <div className="col-span-2">
-                <textarea className="w-full h-full p-8 text-xl outline-none" value={value} onChange={e => setValue(e.target.value)}></textarea>
+                <textarea className="w-full h-full p-8 text-xl outline-none  bg-slate-300" value={value} onChange={e => setValue(e.target.value)}></textarea>
             </div>
             <div className="border-l border-black/10">
-                <div className="px-5 py-8" style={{backgroundColor: color}}>
-                    <h2 className="text-3xl">Analysis</h2>
-                </div>
+            <div
+            className="px-5 py-8"
+            style={{
+                backgroundColor: color,
+                color: color === "#000000" ? "#FFFFFF" : "#000000", // White text if background is black, otherwise black text
+            }}
+            >
+                <h2 className="text-3xl">Analysis</h2>
+            </div>
                 <div>
                     <ul>
                         {analysisData.map(item => (
